@@ -5,9 +5,13 @@ import java.io.*;
  *
  * Ser321 Foundations of Distributed Applications
  * see http://pooh.poly.asu.edu/Ser321
- * @author Tim Lindquist Tim.Lindquist@asu.edu
+ * @author Tim Lindquist Tim.Lindquist@asu.edu, Ryan Meneses
  *         Software Engineering, CIDSE, IAFSE, ASU Poly
- * @version January 2020
+ * @version 2.0
+ * @since January 2021
+ *
+ * Version 2.0 updates the Fraction according to SER321 Assignment 1. 
+ * Allows users to pass arguments via the command line.
  */
 public class Fraction {
 
@@ -38,23 +42,29 @@ public class Fraction {
    }
 
    public static void main (String args[]) {
-      try {
-         // create a new instance
-         // Fraction *frac = [[Fraction alloc] init];
-         Fraction frac = new Fraction();
+	   // create a new instance
+	   // Fraction *frac = [[Fraction alloc] init];
+	   Fraction frac = new Fraction();
+	   
+	   if (args.length == 2) {
+		   try {
+			   // set the values
+			   frac.setNumerator(Integer.parseInt(args[0]));
+			   frac.setDenominator(Integer.parseInt(args[1]));
 
-         // set the values
-         frac.setNumerator(1);
-         frac.setDenominator(3);
+			   // print it
+			   System.out.print("The fraction is: ");
+			   frac.print();
+			   System.out.println("");
 
-         // print it
-         System.out.print("The fraction is: ");
-         frac.print();
-         System.out.println("");
-
-      }catch(Exception e) {
-         e.printStackTrace();
-      }
-   }
+		   } catch(Exception e) {
+			   e.printStackTrace();
+			   System.exit(1);
+		   }
+	   } else if (frac.getDenominator() == 0) {
+		   System.out.println("Denominator is undefined.");
+	   } else {
+		   System.out.println("Usage: gradle runFraction -Pnumerator=<int> -Pdenominator=<int>");
+	   }
+   } 
 }
-

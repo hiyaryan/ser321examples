@@ -44,11 +44,19 @@ task runAppAgain(type: JavaExec) {
 // task that runs the Fraction Main which does not use arguments: gradle runFraction
 task runFraction(type: JavaExec) {
   group 'Fraction Tasks'
-  description 'Tasks which runs Fraction with no arguments'
+  description 'Tasks which runs Fraction with arguments'
 
   classpath = sourceSets.main.runtimeClasspath
 
   main = 'Fraction'
+
+  if (project.hasProperty("numerator") && project.hasProperty("denominator")) {
+    args(project.getProperty('numerator'), project.getProperty('denominator'));
+  } else if (project.hasProperty("numerator")) {
+    args(project.getProperty('numerator'), 1);
+  } else if (project.hasProperty("denominator")) {
+    args(1, project.getProperty("denominator"));
+  }
 }
 
 // Try:
