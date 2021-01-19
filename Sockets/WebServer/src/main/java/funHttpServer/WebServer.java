@@ -259,9 +259,8 @@ class WebServer {
           // amehlhase, 46384989 -> test316
 
           JSONArray repoArray = new JSONArray(json);
-          JSONArray newJSON = new JSONArray();
 
-          for(int i = 0; i < jsonArray.length(); i++) {
+          for(int i = 0; i < repoArray.length(); i++) {
             JSONObject repo = repoArray.getJSONObject(i);
             String repoName = repo.getString("name");
 
