@@ -258,6 +258,9 @@ class WebServer {
           // amehlhase, 46384989 -> ser316examples
           // amehlhase, 46384989 -> test316
 
+          builder.append("HTTP/1.1 200 OK\n");
+          builder.append("Content-Type: text/html; charset=utf-8\n");
+
           JSONArray repoArray = new JSONArray(json);
 
           for(int i = 0; i < repoArray.length(); i++) {
@@ -268,8 +271,7 @@ class WebServer {
             String ownerLogin = owner.getString("login");
             int ownerId = owner.getInt("id");
             
-            builder.append(ownerLogin + ", " + ownerId + " -> " + repoName);
-            builder.append("\n");
+            builder.append(ownerLogin + ", " + ownerId + " -> " + repoName + "\n");
           }
         } else {
           // if the request is not recognized at all
