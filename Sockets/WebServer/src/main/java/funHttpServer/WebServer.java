@@ -273,10 +273,6 @@ class WebServer {
             builder.append("\n");
             builder.append(ownerLogin + ", " + ownerId + " -> " + repoName);
           }
-
-          builder.append("HTTP/1.1 200 OK\n");
-          builder.append("Content-Type: text/html; charset=utf-8\n");
-
         } else {
           // if the request is not recognized at all
 
