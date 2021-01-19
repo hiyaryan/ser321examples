@@ -267,9 +267,13 @@ class WebServer {
             JSONObject owner = repo.getJSONObject("owner");
             String ownerLogin = owner.getString("login");
             int ownerId = owner.getInt("id");
-            
-            builder.append("\n");
-            builder.append(ownerLogin + ", " + ownerId + " -> " + repoName);
+
+            if(i == 0) {
+              builder.append("HTTP/1.1 200 OK\n");
+              builder.append("Content-Type: text/html; charset=utf-8\n");
+              builder.append("\n");
+            }
+            builder.append(ownerLogin + ", " + ownerId + " -> " + repoName + "\n");
           }
         } else {
           // if the request is not recognized at all
