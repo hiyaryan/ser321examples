@@ -217,7 +217,7 @@ class WebServer {
             builder.append("Result is: " + result);
 
           }catch (NumberFormatException ex) {
-            if(query_pairs.containsValue("num1") != true || query_pairs.containsValue("num2") != true) {
+            if(query_pairs.containsKey("num1") != true || query_pairs.containsKey("num2") != true) {
               builder.append("HTTP/1.1 406 Not Acceptable\n");
               builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n");
