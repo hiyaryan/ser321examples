@@ -201,7 +201,7 @@ class WebServer {
           // extract path parameters
           query_pairs = splitQuery(request.replace("multiply?", ""));
 
-          if(query_pairs.get("num1").equals("num1") && query_pairs.get("num2").equals("num2")) {
+          try{
             // extract required fields from parameters
             Integer num1 = Integer.parseInt(query_pairs.get("num1"));
             Integer num2 = Integer.parseInt(query_pairs.get("num2"));
@@ -215,19 +215,13 @@ class WebServer {
             builder.append("\n");
             builder.append("Result is: " + result);
 
-          } else {
-            if(query_pairs.get("num1").equals("num1")) {
+          }catch (NumberFormatException ex) {
+            if(query_pairs.get("num1") == null || query_pairs.get("num1") == null) {
               builder.append("HTTP/1.1 406 Not Acceptable\n");
               builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n");
-              builder.append("num2 is required.");
-
-            } else if(query_pairs.get("num2").equals("num2")) {
-              builder.append("HTTP/1.1 406 Not Acceptable\n");
-              builder.append("Content-Type: text/html; charset=utf-8\n");
-              builder.append("\n");
-              builder.append("num2 is required.");
-
+              builder.append("Two arguments required.");
+              
             } else {
               builder.append("HTTP/1.1 400 Bad Request\n");
               builder.append("Content-Type: text/html; charset=utf-8\n");
