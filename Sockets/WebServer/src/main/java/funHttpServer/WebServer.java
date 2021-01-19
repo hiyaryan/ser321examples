@@ -275,6 +275,7 @@ class WebServer {
             }
             builder.append("\n");
             builder.append(ownerLogin + ", " + ownerId + " -> " + repoName + "\n");
+            builder.append("\n");
           }
         } else {
           // if the request is not recognized at all
