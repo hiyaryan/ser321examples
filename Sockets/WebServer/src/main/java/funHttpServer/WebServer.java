@@ -266,7 +266,7 @@ class WebServer {
 
             JSONObject owner = repo.getJSONObject("owner");
             String ownerLogin = owner.getString("login");
-            String ownerId = owner.getString("id");
+            String ownerId = owner.getInteger("id");
 
             builder.append("HTTP/1.1 200 OK\n");
             builder.append("Content-Type: text/html; charset=utf-8\n");
